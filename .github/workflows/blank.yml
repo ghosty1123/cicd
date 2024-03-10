@@ -1,0 +1,9 @@
+) Create a sample CI/CD pipeline using Azure Pipelines or GitHub Actions (choose either one). Your pipeline should
+include the following stages:
+DOE522 – Formative Assessment 1,2,3 Semester 2 Paper 2024 | V1.0 Page 4 of 4
+• Build: Compile the source code and generate artifacts.
+• Test: Run unit tests and code quality checks (e.g., code coverage, code analysis).
+• Deploy: Deploy the application to a staging environment.
+b) In your CI/CD pipeline, integrate a notification mechanism to alert the team when a build or deployment fails.
+c) Explain the advantages and challenges of using infrastructure as code (IaC) in a CI/CD pipeline. Provide specific
+examples of IaC tools that can be integrated into the pipeline.
