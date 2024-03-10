@@ -1,9 +1,44 @@
-) Create a sample CI/CD pipeline using Azure Pipelines or GitHub Actions (choose either one). Your pipeline should
-include the following stages:
-DOE522 – Formative Assessment 1,2,3 Semester 2 Paper 2024 | V1.0 Page 4 of 4
-• Build: Compile the source code and generate artifacts.
-• Test: Run unit tests and code quality checks (e.g., code coverage, code analysis).
-• Deploy: Deploy the application to a staging environment.
-b) In your CI/CD pipeline, integrate a notification mechanism to alert the team when a build or deployment fails.
-c) Explain the advantages and challenges of using infrastructure as code (IaC) in a CI/CD pipeline. Provide specific
-examples of IaC tools that can be integrated into the pipeline.
+name: Sample CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+      
+    - name: Build
+      run: |
+        # Commands to compile the source code and generate artifacts
+
+    - name: Test
+      run: |
+        # Commands to run unit tests and code quality checks
+
+    - name: Deploy to Staging
+      run: |
+        # Commands to deploy the application to a staging environment
+
+  notify:
+    runs-on: ubuntu-latest
+    needs: build
+    if: failure()
+
+    steps:
+    - name: Send Notification
+      uses: actions/github-script@v4
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        script: |
+          github.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: 'Build or deployment failed. Please check the logs.'
+          })
